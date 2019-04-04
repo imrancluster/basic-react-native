@@ -6,7 +6,8 @@ import {
     StyleSheet,
     TouchableOpacity,
     TouchableHighlight,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    Image
   } from "react-native"
 
   export default class RestaurantRow extends Component {
@@ -54,6 +55,13 @@ import {
                 this.state.showInfo && 
                 <View style={styles.info}>
                     <Text>Restaurant Info</Text>
+                    <Image source={{
+                        uri: `http://d8oauthrest.kbflourmills.com${place.image}`,
+                        flex: 1,
+                        height: 100
+                    }}
+                    // resizeMode="contain"
+                    />
                 </View>
             }
         </View> 

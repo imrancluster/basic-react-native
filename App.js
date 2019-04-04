@@ -6,12 +6,16 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
-  FlatList
+  FlatList,
+  Image
 } from "react-native"
  
 import Header from 'components/Header'
 import RestaurantRow from 'components/RestaurantRow'
 import axios from 'axios'
+
+// React native will automatically pic the @2x @3x
+import PizzaImage from 'images/pizza.png';
 
 export default class App extends Component {
 
@@ -28,6 +32,7 @@ export default class App extends Component {
       .catch(function(error) {
         console.log('Error: ' + error.message);
       });
+
   }
 
   render() {
@@ -38,6 +43,13 @@ export default class App extends Component {
       <View style={{
         flex: 1
       }}>
+        
+        <View style={{
+          marginTop: 30,
+          alignItems: 'center'
+        }}>
+          <Image source={PizzaImage} />
+        </View>
         
         <Header />
 
