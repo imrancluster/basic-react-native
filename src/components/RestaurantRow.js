@@ -10,6 +10,11 @@ import {
     Image
   } from "react-native"
 
+  import Icon from 'react-native-vector-icons/FontAwesome'
+
+  import Stars from 'components/Stars'
+
+
   export default class RestaurantRow extends Component {
 
         state = {
@@ -28,28 +33,27 @@ import {
         } = this.props
 
         return (
-        <View key={place.name} style={[
-            styles.row, 
-            {backgroundColor: index % 2 === 0 ? 'white' : '#F3F3F3'}
-        ]}>
-            <View style={styles.edges}>
-                <Text>{index + 1}</Text>
-            </View>
+        <View key={place.name} style={[{backgroundColor: index % 2 === 0 ? 'white' : '#F3F3F3'} ]}>
+            <View style={styles.row}>
+                <View style={styles.stars}>
+                    <Stars rating={place.rating} />
+                </View>
 
-            <View style={styles.nameAddress}>
-                <Text>{place.name}</Text>
-                <Text style={{color: 'gray'}}>{place.address}</Text>
-            </View>
+                <View style={styles.nameAddress}>
+                    <Text>{place.name}</Text>
+                    <Text style={{color: 'gray'}}>{place.address}</Text>
+                </View>
 
-            <View style={styles.edges}>
-                <TouchableHighlight 
-                    onPress={this.onPressed}
-                    style={styles.button}
-                    underlayColor="#5398DC"
-                >
-                    <Text style={styles.buttonText}>Info</Text>
-                </TouchableHighlight>
-            </View>
+                <View style={styles.edges}>
+                    <TouchableHighlight 
+                        onPress={this.onPressed}
+                        style={styles.button}
+                        underlayColor="#5398DC"
+                    >
+                        <Text style={styles.buttonText}>Info</Text>
+                    </TouchableHighlight>
+                </View>
+            </View>    
 
             {
                 this.state.showInfo && 
@@ -79,6 +83,14 @@ import {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
+      padding: 5,
+      minWidth: 50
+    },
+    stars: {
+      flex: 1,
+      alignItems: 'center',
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
       padding: 5,
       minWidth: 50
     },
