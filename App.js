@@ -10,33 +10,24 @@ import {
 } from "react-native"
  
 import Header from 'components/Header'
-import RestaurantRow from 'components/RestaurantRow';
-
-const restaurants = [
-  {name: 'Karim Kichen', address: '328, Bashundhara R/A'},
-  {name: 'Rashel Irfan', address: '327, Bashundhara R/A'},
-  {name: 'Jinnah Kichen', address: '328, Bashundhara R/A'},
-  {name: 'Tabib Irfan', address: '327, Bashundhara R/A'},
-  {name: 'Firoz Kichen', address: '328, Bashundhara R/A'},
-  {name: 'Saimul Irfan', address: '327, Bashundhara R/A'},
-  {name: 'Liakot Kichen', address: '328, Bashundhara R/A'},
-  {name: 'Babu Irfan', address: '327, Bashundhara R/A'},
-  {name: 'Tonmoy Kichen', address: '328, Bashundhara R/A'},
-  {name: 'Sondip Irfan', address: '327, Bashundhara R/A'},
-  {name: 'Milon Kichen', address: '328, Bashundhara R/A'},
-  {name: 'Ibrahim', address: '327, Bashundhara R/A'},
-  {name: 'Abdullah Kichen', address: '328, Bashundhara R/A'},
-  {name: 'Faruk Irfan', address: '327, Bashundhara R/A'},
-  {name: 'Razib Kichen', address: '328, Bashundhara R/A'},
-  {name: 'Monir Irfan', address: '327, Bashundhara R/A'},
-  {name: 'Khadu Kichen', address: '328, Bashundhara R/A'},
-  {name: 'Chayer Adda', address: '328, Bashundhara R/A'}
-]
+import RestaurantRow from 'components/RestaurantRow'
+import axios from 'axios'
 
 export default class App extends Component {
 
   state = {
-    search: null
+    search: null,
+    restaurants: [],
+    response: []
+  }
+
+  componentDidMount() {
+
+    axios.get('http://d8oauthrest.kbflourmills.com/api/v1/restaurants?_format=json')
+      .then(result => this.setState({ restaurants: result.data }))
+      .catch(function(error) {
+        console.log('Error: ' + error.message);
+      });
   }
 
   render() {
@@ -61,7 +52,7 @@ export default class App extends Component {
 
          <FlatList 
           data={
-            restaurants.filter(place => {
+            this.state.restaurants.filter(place => {
               return !this.state.search || 
               place.name.toLowerCase().indexOf(this.state.search.toLowerCase()) > -1
             })
