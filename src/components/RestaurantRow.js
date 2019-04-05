@@ -22,7 +22,8 @@ import {
         }
 
         onPressed = () => {
-            this.setState({showInfo: !this.state.showInfo})
+            // this.setState({showInfo: !this.state.showInfo})
+            this.props.navigation.navigate('Info');
         }
 
       render() {
