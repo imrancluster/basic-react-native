@@ -5,8 +5,6 @@ import { createStackNavigator, createAppContainer } from 'react-navigation'
 import RestaurantList from 'components/RestaurantList'
 import RestaurantInfo from 'components/RestaurantInfo'
 
-console.log('debuging....')
-
 const MainNavigator = createStackNavigator({
   Home: { screen: RestaurantList },
   Info: { screen: RestaurantInfo }

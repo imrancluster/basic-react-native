@@ -40,6 +40,7 @@ export default class RestaurantList extends Component {
   render() {
 
     // console.log("Search: ", this.state.search)
+    console.log("Restaurants: ", this.state.restaurants)
 
     return (
       <View style={{
