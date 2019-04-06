@@ -9,6 +9,7 @@ import {
 import RestaurantList from 'components/RestaurantList'
 import RestaurantInfo from 'components/RestaurantInfo'
 import About from 'components/About'
+import AddReview from 'components/AddReview'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
 const List = createStackNavigator({
@@ -49,11 +50,20 @@ const Tabs = createBottomTabNavigator({
   }
 })
 
-// const App = createAppContainer(MainNavigator);
-const App = createAppContainer(Tabs);
+const ModalNavigation = createStackNavigator({
+  Tabs: { screen: Tabs },
+  AddReview: { screen: AddReview }
+}, {
+  mode: 'modal',
+  headerMode: 'none',
+  defaultNavigationOptions: {
+    gesturesEnabled: false 
+  }
+})
+
+// gesturesEnabled: false 
+// from iphone modal can scroll down. gesturesEnabled: false deny that system
+
+const App = createAppContainer(ModalNavigation);
 
 export default App;
-
-// export default createBottomTabNavigator({
-//   List: { screen: App }
-// })

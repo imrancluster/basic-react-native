@@ -5,7 +5,8 @@ import {
     Text,
     ScrollView,
     Image,
-    StyleSheet
+    StyleSheet,
+    TouchableOpacity
 } from 'react-native'
 
 import Stars from "components/Stars"
@@ -14,6 +15,10 @@ export default class RestaurantInfo extends Component {
 
     static navigationOptions = {
         title: "Restaurant Info"
+    }
+
+    addReview = () => {
+        this.props.navigation.navigate('AddReview')
     }
 
   render() {
@@ -36,6 +41,12 @@ export default class RestaurantInfo extends Component {
                 <Text style={styles.name}>{place.name}</Text>
                 <Text style={styles.address}>{place.address}</Text>
                 <Stars rating={place.rating} />
+                <TouchableOpacity 
+                style={styles.button}
+                onPress={this.addReview}
+                >
+                    <Text style={styles.buttonText}>Add Review</Text>
+                </TouchableOpacity>
             </View>
 
         </View>
@@ -66,5 +77,19 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         margin: 20
+    },
+    button: {
+        borderWidth: 1,
+        borderColor: '#0066CC',
+        borderRadius: 14,
+        paddingHorizontal: 10,
+        paddingVertical: 3,
+        backgroundColor: '#fff',
+        marginTop: 10
+    },
+    buttonText: {
+        fontSize: 12,
+        color: '#0066CC',
+        textAlign: 'center'
     }
 })
