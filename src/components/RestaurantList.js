@@ -5,7 +5,8 @@ import {
   StyleSheet,
   TextInput,
   FlatList,
-  Image
+  Image,
+  ActivityIndicator
 } from 'react-native'
 
 import axios from 'axios' 
@@ -24,14 +25,19 @@ export default class RestaurantList extends Component {
   state = {
     search: null,
     restaurants: [],
-    response: []
+    response: [],
+    loading: false
   }
 
   componentDidMount() {
+    
+    this.setState({ loading: true })
 
     axios.get('http://d8oauthrest.kbflourmills.com/api/v1/restaurants?_format=json')
-      .then(result => this.setState({ restaurants: result.data }))
+      .then(
+        result => this.setState({ restaurants: result.data, loading: false }))
       .catch(function(error) {
+        this.setState({ loading: false })
         console.log('Error: ' + error.message);
       });
 
@@ -65,6 +71,11 @@ export default class RestaurantList extends Component {
         }}
         value={this.state.search}
          />
+
+         
+         {
+          this.state.loading && <ActivityIndicator size="large" color="#0066CC" style={{padding: 10}} />
+         }
 
          <FlatList 
           data={
