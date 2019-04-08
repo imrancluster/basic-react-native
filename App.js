@@ -6,12 +6,16 @@ import {
   createBottomTabNavigator
 } from 'react-navigation'
 
+import Icon from 'react-native-vector-icons/FontAwesome'
+
+import SplashScreen from 'react-native-splash-screen'
+
 import RestaurantList from 'components/RestaurantList'
 import RestaurantInfo from 'components/RestaurantInfo'
 import About from 'components/About'
 import AddReview from 'components/AddReview'
 
-import Icon from 'react-native-vector-icons/FontAwesome'
+
 const List = createStackNavigator({
   Home: { screen: RestaurantList },
   Info: { screen: RestaurantInfo }
@@ -64,6 +68,15 @@ const ModalNavigation = createStackNavigator({
 // gesturesEnabled: false 
 // from iphone modal can scroll down. gesturesEnabled: false deny that system
 
-const App = createAppContainer(ModalNavigation);
+const ModalNavigationInitiated = createAppContainer(ModalNavigation);
 
-export default App;
+export default class App extends Component {
+
+  componentDidMount() {
+    SplashScreen.hide()
+  }
+
+  render() {
+    return <ModalNavigationInitiated />
+  }
+}
