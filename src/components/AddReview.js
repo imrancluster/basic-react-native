@@ -7,7 +7,8 @@ import {
     Text,
     TouchableOpacity,
     StyleSheet,
-    TextInput
+    TextInput,
+    ActivityIndicator
 } from 'react-native'
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -17,11 +18,40 @@ export default class AddReview extends Component {
     state = {
         name: '',
         rating: 0,
-        review: ''
+        review: '',
+        submitting: false
     }
 
     close = () => {
         this.props.navigation.goBack()
+    }
+
+    submitReview = () => {
+
+        this.setState({ submitting: true })
+
+        // fetch('http://d8oauthrest.kbflourmills.com/api/v1/review', {
+        //     method: 'POST',
+        //     body: JSON.stringify({
+        //         name: this.state.name,
+        //         rating: this.state.rating,
+        //         review: this.state.review
+        //     })
+        // })
+        // .then(response => response.json())
+        // .then(result => {
+        //     this.setState({ submitting: false }, () => {
+        //         this.props.navigation.goBack()
+        //     })
+        // })
+        // .catch(error => {
+        //     this.setState({ submitting: false })
+        // })
+
+        setTimeout(() => {
+            this.setState({ submitting: false })
+            this.props.navigation.goBack()
+        }, 2000)
     }
 
   render() {
@@ -72,7 +102,16 @@ export default class AddReview extends Component {
                     numberOfLines={5}
                 />
 
-                <TouchableOpacity style={styles.submitButton}>
+                {
+                    this.state.submitting && 
+                    <ActivityIndicator size="large" color="#0066CC" style={{padding: 10}} />
+                }
+
+                <TouchableOpacity 
+                style={styles.submitButton}
+                onPress={this.submitReview}
+                disabled={this.state.submitting}
+                >
                     <Text style={styles.submitButtonText}>Submit Review</Text>
                 </TouchableOpacity>
 
