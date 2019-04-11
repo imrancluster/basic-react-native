@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 import { 
   createStackNavigator, 
   createAppContainer,
-  createBottomTabNavigator
+  createBottomTabNavigator,
+  createDrawerNavigator
 } from 'react-navigation'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -14,6 +15,8 @@ import RestaurantList from 'components/RestaurantList'
 import RestaurantInfo from 'components/RestaurantInfo'
 import About from 'components/About'
 import AddReview from 'components/AddReview'
+
+import Settings from 'screens/Settings'
 
 
 const List = createStackNavigator({
@@ -68,7 +71,13 @@ const ModalNavigation = createStackNavigator({
 // gesturesEnabled: false 
 // from iphone modal can scroll down. gesturesEnabled: false deny that system
 
-const ModalNavigationInitiated = createAppContainer(ModalNavigation);
+// Drawer Navigation
+const AppDrawerNavigation = createDrawerNavigator({
+  Home: { screen: ModalNavigation },
+  Settings: { screen: Settings }
+})
+
+const AppNavigationInitiated = createAppContainer(AppDrawerNavigation);
 
 export default class App extends Component {
 
@@ -77,6 +86,6 @@ export default class App extends Component {
   }
 
   render() {
-    return <ModalNavigationInitiated />
+    return <AppNavigationInitiated />
   }
 }

@@ -2,16 +2,20 @@ import React, {Component} from 'react';
 
 import {
   View,
+  Text,
   StyleSheet,
   TextInput,
   FlatList,
   Image,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableOpacity
 } from 'react-native'
 
 import axios from 'axios' 
 import Header from 'components/Header'
 import RestaurantRow from 'components/RestaurantRow'
+
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 // React native will automatically pic the @2x @3x
 import PizzaImage from 'images/pizza.png';
@@ -19,7 +23,11 @@ import PizzaImage from 'images/pizza.png';
 export default class RestaurantList extends Component {
 
   static navigationOptions = {
-    header: null
+    // header: null,
+    drawerLabel: 'Home',
+    drawerIcon: ({ tintColor }) => (
+      <Icon name={'home'} color={tintColor} size={22} />
+    ),
   }
 
   state = {
@@ -43,6 +51,10 @@ export default class RestaurantList extends Component {
 
   }
 
+  toggleDrawer = () => {
+    this.props.navigation.toggleDrawer();
+  }
+
   render() {
 
     // console.log("Search: ", this.state.search)
@@ -53,6 +65,10 @@ export default class RestaurantList extends Component {
         flex: 1,
         backgroundColor: '#ffffff'
       }}>
+        
+      <TouchableOpacity style={{borderRadius: 20, backgroundColor: '#eee'}} onPress={this.toggleDrawer} >
+        <Text style={{fontSize: 20}}>Drawer ||||</Text>
+      </TouchableOpacity>
         
         <View style={{
           marginTop: 30,
