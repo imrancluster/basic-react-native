@@ -31,6 +31,7 @@ import Settings from 'screens/Settings'
 import NavigationDrawerStructure from 'components/NavigationDrawerStructure';
 import SliderExample from 'screens/SliderExample';
 import ViewPagerExample from 'screens/ViewPagerExample';
+import TabsSlidesExample from './src/screens/TabsSlidesExample';
 
 
 
@@ -136,6 +137,23 @@ const ViewPagerExample_StackNavigation = createStackNavigator({
   },
 });
 
+
+// TabsSlidesExample Drawer Item4
+const TabsSlidesExample_StackNavigation = createStackNavigator({
+  //All the screen from the Screen3 will be indexed here
+  TabsSlidesExample: {
+    screen: TabsSlidesExample,
+    navigationOptions: ({ navigation }) => ({
+      title: 'TabsSlides Example',
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#FF9800',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
+
 // Custom Drawer Componnents
 const CustomDrawerComponent = (props) => {
   return(
@@ -178,6 +196,15 @@ const AppDrawerNavigation = createDrawerNavigator({
     screen: ViewPagerExample_StackNavigation,
     navigationOptions: {
       drawerLabel: 'ViewPager Example',
+      drawerIcon: ({ tintColor }) => (
+        <Icon name="slideshare" color={tintColor} size={22} />
+      ),
+    },
+  },
+  TabsSlidesExample: {
+    screen: TabsSlidesExample_StackNavigation,
+    navigationOptions: {
+      drawerLabel: 'Tabs Slides',
       drawerIcon: ({ tintColor }) => (
         <Icon name="slideshare" color={tintColor} size={22} />
       ),
