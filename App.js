@@ -29,7 +29,8 @@ import AddReview from 'components/AddReview'
 
 import Settings from 'screens/Settings'
 import NavigationDrawerStructure from 'components/NavigationDrawerStructure';
-import SliderExample from './src/screens/SliderExample';
+import SliderExample from 'screens/SliderExample';
+import ViewPagerExample from 'screens/ViewPagerExample';
 
 
 
@@ -87,7 +88,7 @@ const ModalNavigation = createStackNavigator({
 // gesturesEnabled: false 
 // from iphone modal can scroll down. gesturesEnabled: false deny that system
 
-// Settings Drawer Item
+// Settings Drawer Item1
 const Settings_StackNavigator = createStackNavigator({
   //All the screen from the Screen3 will be indexed here
   Settings: {
@@ -103,13 +104,29 @@ const Settings_StackNavigator = createStackNavigator({
   },
 });
 
-// SliderExample Drawer Item
+// SliderExample Drawer Item2
 const SliderExample_StackNavigator = createStackNavigator({
   //All the screen from the Screen3 will be indexed here
   SliderExample: {
     screen: SliderExample,
     navigationOptions: ({ navigation }) => ({
       title: 'Slider Example',
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#FF9800',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
+
+// ViewPagerExample Drawer Item3
+const ViewPagerExample_StackNavigation = createStackNavigator({
+  //All the screen from the Screen3 will be indexed here
+  ViewPagerExample: {
+    screen: ViewPagerExample,
+    navigationOptions: ({ navigation }) => ({
+      title: 'ViewPager Example',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#FF9800',
@@ -152,6 +169,15 @@ const AppDrawerNavigation = createDrawerNavigator({
     screen: SliderExample_StackNavigator,
     navigationOptions: {
       drawerLabel: 'Slider Example',
+      drawerIcon: ({ tintColor }) => (
+        <Icon name="slideshare" color={tintColor} size={22} />
+      ),
+    },
+  },
+  ViewPagerExample: {
+    screen: ViewPagerExample_StackNavigation,
+    navigationOptions: {
+      drawerLabel: 'ViewPager Example',
       drawerIcon: ({ tintColor }) => (
         <Icon name="slideshare" color={tintColor} size={22} />
       ),
