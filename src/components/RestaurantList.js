@@ -51,10 +51,6 @@ export default class RestaurantList extends Component {
 
   }
 
-  toggleDrawer = () => {
-    this.props.navigation.toggleDrawer();
-  }
-
   render() {
 
     // console.log("Search: ", this.state.search)
@@ -65,10 +61,6 @@ export default class RestaurantList extends Component {
         flex: 1,
         backgroundColor: '#ffffff'
       }}>
-        
-      <TouchableOpacity style={{borderRadius: 20, backgroundColor: '#eee'}} onPress={this.toggleDrawer} >
-        <Text style={{fontSize: 20}}>Drawer ||||</Text>
-      </TouchableOpacity>
         
         <View style={{
           marginTop: 30,
