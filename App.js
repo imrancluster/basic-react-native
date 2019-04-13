@@ -29,6 +29,7 @@ import AddReview from 'components/AddReview'
 
 import Settings from 'screens/Settings'
 import NavigationDrawerStructure from 'components/NavigationDrawerStructure';
+import SliderExample from './src/screens/SliderExample';
 
 
 
@@ -86,12 +87,29 @@ const ModalNavigation = createStackNavigator({
 // gesturesEnabled: false 
 // from iphone modal can scroll down. gesturesEnabled: false deny that system
 
+// Settings Drawer Item
 const Settings_StackNavigator = createStackNavigator({
   //All the screen from the Screen3 will be indexed here
   Settings: {
     screen: Settings,
     navigationOptions: ({ navigation }) => ({
       title: 'Settings 1',
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#FF9800',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
+
+// SliderExample Drawer Item
+const SliderExample_StackNavigator = createStackNavigator({
+  //All the screen from the Screen3 will be indexed here
+  SliderExample: {
+    screen: SliderExample,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Slider Example',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: '#FF9800',
@@ -129,6 +147,15 @@ const AppDrawerNavigation = createDrawerNavigator({
         <Icon name="cog" color={tintColor} size={22} />
       ),
     }, 
+  },
+  SliderExample: {
+    screen: SliderExample_StackNavigator,
+    navigationOptions: {
+      drawerLabel: 'Slider Example',
+      drawerIcon: ({ tintColor }) => (
+        <Icon name="slideshare" color={tintColor} size={22} />
+      ),
+    },
   }
 }, {
   contentComponent: CustomDrawerComponent,
